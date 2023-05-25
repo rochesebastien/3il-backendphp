@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Serie index{% endblock %}
+
+{% block body %}
+    <h1>Voir nos séries</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Numéro</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Note</th>
+                <th>Vos actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for serie in series %}
+            <tr>
+                <td>{{ serie.id }}</td>
+                <td>{{ serie.titre }}</td>
+                <td>{{ serie.description }}</td>
+                <td>{{ serie.note }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_serie_show', {'id': serie.id}) }}">Détails</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas de série</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('app_serie_new') }}">Ajouter une série</a>
+{% endblock %}
